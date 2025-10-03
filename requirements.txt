@@ -1,0 +1,7 @@
+langchain
+langgraph
+langchain-community
+langchain-openai
+langchain-mcp-adapters
+psycopg2-binary
+matplotlib
