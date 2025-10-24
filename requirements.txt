@@ -1,0 +1,15 @@
+langchain
+langgraph
+langchain-community
+langchain-openai
+langchain-mcp-adapters
+psycopg2-binary
+matplotlib
+pandas
+seaborn
+uuid
+fastmcp
+asyncpg
+sqlalchemy[asyncpg]
+fastapi[standard]
+uvicorn

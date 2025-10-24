@@ -1,0 +1,6 @@
+venv/
+.env
+app.log
+__pycache__/
+.DS_Store
+streaming.py
