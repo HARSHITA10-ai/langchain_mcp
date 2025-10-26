@@ -1,0 +1,10 @@
+venv/
+.env
+app.log
+__pycache__/
+.DS_Store
+streaming.py
+=3.3
+client.log
+mlflow.db
+mlartifacts/
