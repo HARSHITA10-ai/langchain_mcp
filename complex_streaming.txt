@@ -1,0 +1,25 @@
+ curl -N -X POST http://localhost:3004/chat \
+  -H "Content-Type: application/json" \
+  -d '{"token": "abc", "query": "give me overall summary", "user_id": "1233"}'
+
+data: {"content": "give me overall summary"}
+
+data: {"content": "To provide an overall summary, I will gather basic details such as project names, defect counts, and threshold mismatch counts. Let's start by retrieving this information."}
+
+data: {"content": "Error: (psycopg2.errors.UndefinedFunction) operator does not exist: uuid = integer\nLINE 1: ...count FROM projects p LEFT JOIN defects d ON p.id = d.defect...\n                                                             ^\nHINT:  No operator matches the given name and argument types. You might need to add explicit type casts.\n\n[SQL: SELECT p.project_name, COUNT(DISTINCT d.defect_id) AS defect_count, COUNT(DISTINCT cr.id) AS threshold_mismatch_count FROM projects p LEFT JOIN defects d ON p.id = d.defect_id LEFT JOIN compare_results cr ON p.id = cr.project_id WHERE p.compare_type = 'payroll' GROUP BY p.project_name LIMIT 5]\n(Background on this error at: https://sqlalche.me/e/20/f405)"}
+
+data: {"content": "It seems there was an error in the query due to a mismatch in data types. Let me correct that and try again."}
+
+data: {"content": "Error: (psycopg2.errors.CannotCoerce) cannot cast type integer to uuid\nLINE 1: ...ojects p LEFT JOIN defects d ON p.id = d.defect_id::uuid LEF...\n                                                             ^\n\n[SQL: SELECT p.project_name, COUNT(DISTINCT d.defect_id) AS defect_count, COUNT(DISTINCT cr.id) AS threshold_mismatch_count FROM projects p LEFT JOIN defects d ON p.id = d.defect_id::uuid LEFT JOIN compare_results cr ON p.id = cr.project_id WHERE p.compare_type = 'payroll' GROUP BY p.project_name LIMIT 5]\n(Background on this error at: https://sqlalche.me/e/20/f405)"}
+
+data: {"content": "It seems there is a mistake in the way the join is being attempted between the `projects` and `defects` tables. Let me correct the approach and try again."}
+
+data: {"content": "[('Client1_Paycompare_HRSP', 0, 1655), ('Client 2 _ HRSP _Pay compare', 0, 1), ('Client 3 _HRSP Pay compare', 0, 115), ('ECC to ECP upgrade', 0, 1071), ('PayCompare_US_Client1_HRSP_1', 0, 0)]"}
+
+data: {"content": "Here's an overall summary of the projects related to payroll:\n\n- **Client1_Paycompare_HRSP**: \n  - Defect Count: 0\n  - Threshold Mismatch Count: 1,655\n\n- **Client 2 _ HRSP _Pay compare**: \n  - Defect Count: 0\n  - Threshold Mismatch Count: 1\n\n- **Client 3 _HRSP Pay compare**: \n  - Defect Count: 0\n  - Threshold Mismatch Count: 115\n\n- **ECC to ECP upgrade**: \n  - Defect Count: 0\n  - Threshold Mismatch Count: 1,071\n\n- **PayCompare_US_Client1_HRSP_1**: \n  - Defect Count: 0\n  - Threshold Mismatch Count: 0\n\nThese projects have varying numbers of threshold mismatches, but currently, none have recorded defects. \n\nWould you like to explore a chart, another project, or a detailed analysis?"}
+
+aggala.harshita@Aggalas-MacBook-Air ~ % curl -N -X POST http://localhost:3004/chat \
+  -H "Content-Type: application/json" \
+  -d '{"token": "abc", "query": "give me overall summary", "user_id": "1233343"}'
+
+data: {"content": "Here's an overall summary of the projects related to payroll:\n\n1. **Client1_Paycompare_HRSP**\n   - Defect Count: 3\n   - Threshold Mismatch Count: 1,655\n\n2. **Client 2 _ HRSP _Pay compare**\n   - Defect Count: 3\n   - Threshold Mismatch Count: 1\n\n3. **Client 3 _HRSP Pay compare**\n   - Defect Count: 3\n   - Threshold Mismatch Count: 115\n\n4. **ECC to ECP upgrade**\n   - Defect Count: 3\n   - Threshold Mismatch Count: 1,071\n\n5. **PayCompare_US_Client1_HRSP_1**\n   - Defect Count: 3\n   - Threshold Mismatch Count: 0\n\nThese projects show varying levels of threshold mismatches, with \"Client1_Paycompare_HRSP\" having the highest count. All projects have a consistent defect count of 3.\n\nWould you like to explore a chart, another project, or a detailed analysis?"}
